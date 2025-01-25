@@ -1,17 +1,15 @@
-const express  = require('express')
-const app = express()
-const mongoose = require('mongoose')
-const connectDB = require('./config/db')
+const express = require("express");
+const app = express();
+const mongoose = require("mongoose");
+const connectDB = require("./config/db");
 
-connectDB()
-
-
+connectDB();
 
 app.get("/", (req, res) => {
-    res.send("Home Page")
-})
+  res.send("Home Page");
+});
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`)
-})
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
