@@ -2,18 +2,29 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const connectDB = require("./config/db");
-const Listing = require("./models/listing");
+const path = require("path");
+const methodOverride = require("method-override");
+
+// Import routes
+const listingRoutes = require("./routes/listingRoutes");
 
 connectDB();
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
+app.use(methodOverride("_method")); // Use method-override for PUT and DELETE
+app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Define routes
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-app.get("/testListings", async (req, res) => {
-  const listings = await Listing.find();
-  res.json(listings);
-});
+// Use the listing routes
+app.use("/listings", listingRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
