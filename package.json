@@ -1,0 +1,52 @@
+{
+  "name": "urban-stays",
+  "version": "1.0.0",
+  "description": "A modern platform to discover and book unique urban accommodations with ease.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anuragbansall/Urban-Stays.git"
+  },
+  "keywords": [
+    "urban",
+    "stays",
+    "accommodations",
+    "travel",
+    "booking",
+    "rentals",
+    "stays",
+    "modern",
+    "travel",
+    "city",
+    "lodging",
+    "urban",
+    "retreats",
+    "vacation",
+    "hospitality",
+    "homes",
+    "travel",
+    "platform"
+  ],
+  "author": "Anurag Bansal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anuragbansall/Urban-Stays/issues"
+  },
+  "homepage": "https://github.com/anuragbansall/Urban-Stays#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
