@@ -11,6 +11,7 @@ const listingSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+    default: "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg",
     set: (value) =>
       !value
         ? "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg"
