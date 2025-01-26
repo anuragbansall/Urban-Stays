@@ -1,17 +1,23 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  <h2>Listings</h2>
-  <ul>
+  <div id="listings">
     <% listings.forEach((listing) => { %>
-      <li>
-        <p>
-          <strong><%= listing.title %></strong>
-        </p>
-        <p><%= listing.description %></p>
-        <p>Price: &#8377;<%= listing.price.toLocaleString("en-IN") %></p>
-        <p>Location: <%= listing.location %></p>
-        <p>Country: <%= listing.country %></p>
-        <a href="/listings/view/<%= listing._id %>">View Details</a>
-      </li>
+    <div class="listing-card">
+      <a href="/listings/view/<%= listing._id %>" class="listing-link">
+        <div class="listing-image">
+          <img src="<%= listing.image %>" alt="<%= listing.title %>" />
+        </div>
+        <div class="listing-info">
+          <p class="listing-title"><%= listing.title %></p>
+          <p class="listing-location">
+            <%= listing.location %>, <%= listing.country %>
+          </p>
+          <p class="listing-price">
+            &#8377;<%= listing.price.toLocaleString("en-IN") %> per night
+          </p>
+        </div>
+      </a>
+    </div>
     <% }); %>
+  </div>
 </body>
