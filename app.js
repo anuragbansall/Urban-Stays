@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/db");
 const path = require("path");
 const methodOverride = require("method-override");
+const ejsMate = require("ejs-mate");
 
 // Import routes
 const listingRoutes = require("./routes/listingRoutes");
@@ -17,6 +18,8 @@ app.use(methodOverride("_method")); // Use method-override for PUT and DELETE
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.engine("ejs", ejsMate);
 
 // Define routes
 app.get("/", (req, res) => {

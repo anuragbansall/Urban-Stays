@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h2>Listings</h2>
-    <div>
-      <img
-        src="<%= listing.image %>"
-        alt="image of <%= listing.title %>"
-        width="160px"
-      />
-      <p><strong><%= listing.title %></strong></p>
-      <p><%= listing.description %></p>
-      <p>Price: &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
-      <p><%= listing.location %></p>
-      <p><%= listing.country %></p>
-      <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-        <button type="submit">Delete Listing</button>
-      </form>
-      <a href="/listings/<%= listing._id %>/edit">Edit Listing</a>
-    </div>
-    <a href="/listings/new">Add New Listing</a>
-    <script src="/public/javascripts/listing.js"></script>
-  </body>
-</html>
+<% layout("/layouts/boilerplate") %>
+<body>
+  <h2>Listings</h2>
+  <div>
+    <img
+      src="<%= listing.image %>"
+      alt="image of <%= listing.title %>"
+      width="160px"
+    />
+    <p><strong><%= listing.title %></strong></p>
+    <p><%= listing.description %></p>
+    <p>Price: &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
+    <p><%= listing.location %></p>
+    <p><%= listing.country %></p>
+    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+      <button type="submit">Delete Listing</button>
+    </form>
+    <a href="/listings/<%= listing._id %>/edit">Edit Listing</a>
+  </div>
+  <a href="/listings/new">Add New Listing</a>
+  <script src="/public/javascripts/listing.js"></script>
+</body>
