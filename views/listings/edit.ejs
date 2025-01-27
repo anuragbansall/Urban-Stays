@@ -1,11 +1,12 @@
 <% layout("/layouts/boilerplate") %>
-<body>
-  <h2>Edit Listing</h2>
+<body class="form-body">
   <form
     id="edit-listing-form"
     method="POST"
     action="/listings/<%= listing.id %>?_method=PUT"
+    class="form"
   >
+    <h2 class="form-title">Edit Listing</h2>
     <label for="title">Title</label>
     <input
       type="text"
@@ -50,7 +51,7 @@
     <label for="image">Image</label>
     <input type="text" name="image" id="image" value="<%= listing.image %>" />
     <br />
-    <button type="submit">Update Listing</button>
+    <button type="submit" class="submit-btn">Update Listing</button>
   </form>
 
   <!-- <script src="/public/javascripts/listings/edit.js"></script> -->

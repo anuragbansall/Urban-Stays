@@ -1,25 +1,53 @@
 <% layout("/layouts/boilerplate") %>
-<body>
-  <h2>Add New Listing</h2>
-  <form action="/listings" method="POST">
+<body class="form-body">
+  <form action="/listings" method="POST" class="form">
+    <h2 class="form-title">Add New Listing</h2>
     <label for="title">Title</label>
-    <input type="text" name="title" id="title" required />
+    <input
+      type="text"
+      name="title"
+      id="title"
+      required
+      placeholder="Mountain Retreat"
+    />
     <br />
     <label for="description">Description</label>
-    <textarea name="description" id="description" required></textarea>
+    <textarea
+      name="description"
+      id="description"
+      required
+      placeholder="Description here..."
+    ></textarea>
     <br />
     <label for="price">Price</label>
-    <input type="number" name="price" id="price" required />
+    <input type="number" name="price" id="price" required placeholder="1500" />
     <br />
     <label for="location">Location</label>
-    <input type="text" name="location" id="location" required />
+    <input
+      type="text"
+      name="location"
+      id="location"
+      required
+      placeholder="Aspen"
+    />
     <br />
     <label for="country">Country</label>
-    <input type="text" name="country" id="country" required />
+    <input
+      type="text"
+      name="country"
+      id="country"
+      required
+      placeholder="United States"
+    />
     <br />
     <label for="image">Image</label>
-    <input type="text" name="image" id="image" />
+    <input
+      type="text"
+      name="image"
+      id="image"
+      placeholder="Image URL here..."
+    />
     <br />
-    <button type="submit">Add Listing</button>
+    <button type="submit" class="submit-btn">Add Listing</button>
   </form>
 </body>
