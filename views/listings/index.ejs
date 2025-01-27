@@ -1,6 +1,6 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  <div id="listings">
+  <div id="listings" class="container">
     <% listings.forEach((listing) => { %>
     <div class="listing-card">
       <a href="/listings/view/<%= listing._id %>" class="listing-link">

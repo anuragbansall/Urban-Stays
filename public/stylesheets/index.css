@@ -23,6 +23,11 @@ body {
   text-align: center;
 }
 
+.container {
+  max-width: 1800px;
+  margin: auto;
+}
+
 header#navbar {
   background-color: #fff;
   position: sticky;
@@ -209,7 +214,7 @@ header#navbar nav ul li a:hover {
   font-size: 1rem;
 }
 
-.form textarea{
+.form textarea {
   resize: none;
   height: 100px;
 }
