@@ -1,22 +1,28 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  <h2>Listings</h2>
-  <div>
-    <img
-      src="<%= listing.image %>"
-      alt="image of <%= listing.title %>"
-      width="160px"
-    />
-    <p><strong><%= listing.title %></strong></p>
-    <p><%= listing.description %></p>
-    <p>Price: &#8377; <%= listing.price.toLocaleString("en-IN") %></p>
-    <p><%= listing.location %></p>
-    <p><%= listing.country %></p>
-    <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
-      <button type="submit">Delete Listing</button>
-    </form>
-    <a href="/listings/<%= listing._id %>/edit">Edit Listing</a>
+  <div class="show-listing-card">
+    <div class="show-listing-image">
+      <img src="<%= listing.image %>" alt="image of <%= listing.title %>" />
+    </div>
+    <div class="show-listing-info">
+      <h2 class="show-listing-title"><strong><%= listing.title %></strong></h2>
+      <p class="show-listing-price">
+        Price: &#8377; <%= listing.price.toLocaleString("en-IN") %>
+      </p>
+      <p class="show-listing-description"><%= listing.description %></p>
+      <p class="show-listing-location">
+        <%= listing.location %>, <%= listing.country %>
+      </p>
+    </div>
+    <div class="show-listing-actions">
+      <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
+        <button type="submit" class="primary-btn">Delete Listing</button>
+      </form>
+      <a href="/listings/<%= listing._id %>/edit" class="secondary-btn"
+        >Edit Listing</a
+      >
+      <a href="/listings/new" class="secondary-btn">Add New Listing</a>
+    </div>
   </div>
-  <a href="/listings/new">Add New Listing</a>
   <script src="/public/javascripts/listing.js"></script>
 </body>

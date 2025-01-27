@@ -17,12 +17,6 @@ body {
   font-family: "Signika", serif;
 }
 
-.main-body{
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
 .quot {
   font-family: "Love Ya Like A Sister", cursive;
   font-size: 2rem;
@@ -32,6 +26,40 @@ body {
 .container {
   max-width: 1800px;
   margin: auto;
+}
+
+.primary-btn{
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.primary-btn:hover{
+  background-color: #ff7b7f;
+}
+
+.secondary-btn{
+  background-color: var(--secondary-color);
+  color: #333;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 1.1rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.secondary-btn:hover{
+  background-color: #ece3e3;
 }
 
 header#navbar {
@@ -241,4 +269,60 @@ header#navbar nav ul li a:hover {
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 1.1rem;
+}
+
+.show-listing-card {
+  padding: 2rem 5rem;
+}
+
+.show-listing-card .show-listing-image {
+  width: 50rem;
+  height: 25rem;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.show-listing-card .show-listing-image:hover img {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.show-listing-card .show-listing-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.show-listing-card .show-listing-info {
+  background-color: #f7f7f7;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.show-listing-card .show-listing-info h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.show-listing-info p {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #666;
+}
+
+.show-listing-info .show-listing-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.show-listing-actions{
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
 }
