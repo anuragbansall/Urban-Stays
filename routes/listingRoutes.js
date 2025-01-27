@@ -60,7 +60,7 @@ router.get("/:id/edit", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { title, description, price, location, country } = req.body;
+  const { title, description, price, location, country, image } = req.body;
   try {
     const updatedListing = await Listing.findByIdAndUpdate(
       id,
@@ -70,6 +70,7 @@ router.put("/:id", async (req, res) => {
         price,
         location,
         country,
+        image,
       },
       { new: true }
     );
