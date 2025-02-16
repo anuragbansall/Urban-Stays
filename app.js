@@ -1,5 +1,4 @@
 require("dotenv").config();
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -22,6 +21,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.engine("ejs", ejsMate);
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  const { status = 500, message = "Something went wrong" } = err;
+  res.status(status).send(message);
+});
 
 // Define routes
 app.get("/", (req, res) => {

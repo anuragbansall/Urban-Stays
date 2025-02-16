@@ -2,25 +2,23 @@ const express = require("express");
 const Listing = require("../models/listing");
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", async (req, res, next) => {
   try {
     const listings = await Listing.find();
     res.render("listings", { listings });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
+    next(err);
   }
 });
 
-router.get("/view/:id", async (req, res) => {
+router.get("/view/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
     const listing = await Listing.findById(id);
     if (!listing) return res.status(404).send("Listing not found");
     res.render("listings/show", { listing });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
+    next(err);
   }
 });
 
@@ -28,7 +26,7 @@ router.get("/new", (req, res) => {
   res.render("listings/new");
 });
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   console.log(req.body);
   const { title, description, price, location, country } = req.body;
   try {
@@ -41,24 +39,22 @@ router.post("/", async (req, res) => {
     });
     res.redirect(`/listings/view/${newListing._id}`); // Use _id instead of id
   } catch (err) {
-    console.error(err);
-    res.status(400).send("Invalid data");
+    next(err);
   }
 });
 
-router.get("/:id/edit", async (req, res) => {
+router.get("/:id/edit", async (req, res, next) => {
   const { id } = req.params;
   try {
     const listing = await Listing.findById(id);
     if (!listing) return res.status(404).send("Listing not found");
     res.render("listings/edit", { listing });
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
+    next(err);
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put("/:id", async (req, res, next) => {
   const { id } = req.params;
   const { title, description, price, location, country, image } = req.body;
   try {
@@ -76,19 +72,17 @@ router.put("/:id", async (req, res) => {
     );
     res.redirect(`/listings/view/${updatedListing._id}`);
   } catch (err) {
-    console.error(err);
-    res.status(400).send("Invalid data");
+    next(err);
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", async (req, res, next) => {
   const { id } = req.params;
   try {
     await Listing.findByIdAndDelete(id);
     res.redirect("/listings");
   } catch (err) {
-    console.error(err);
-    res.status(500).send("Server Error");
+    next(err);
   }
 });
 
