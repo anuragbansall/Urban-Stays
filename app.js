@@ -1,16 +1,13 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
-const connectDB = require("./config/db");
+const connectDB = require("./config/connectDB");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 
 // Import routes
 const listingRoutes = require("./routes/listingRoutes");
-
-connectDB();
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,10 +30,11 @@ app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-// Use the listing routes
+// listing routes
 app.use("/listings", listingRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
+  connectDB();
   console.log(`Server is running on http://localhost:${PORT}`);
 });
