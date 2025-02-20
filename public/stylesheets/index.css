@@ -28,7 +28,7 @@ body {
   margin: auto;
 }
 
-.primary-btn{
+.primary-btn {
   background-color: var(--primary-color);
   color: #fff;
   padding: 0.75rem 1rem;
@@ -41,11 +41,11 @@ body {
   display: inline-block;
 }
 
-.primary-btn:hover{
+.primary-btn:hover {
   background-color: #ff7b7f;
 }
 
-.secondary-btn{
+.secondary-btn {
   background-color: var(--secondary-color);
   color: #333;
   padding: 0.75rem 1rem;
@@ -58,7 +58,7 @@ body {
   display: inline-block;
 }
 
-.secondary-btn:hover{
+.secondary-btn:hover {
   background-color: #ece3e3;
 }
 
@@ -321,8 +321,26 @@ header#navbar nav ul li a:hover {
   color: var(--primary-color);
 }
 
-.show-listing-actions{
+.show-listing-actions {
   display: flex;
   gap: 1rem;
   margin-top: 1rem;
+}
+
+#error-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#error-page h2 {
+  font-size: 5rem;
+  color: var(--primary-color);
+}
+
+#error-page p {
+  font-size: 1.5rem;
+  color: #333;
 }

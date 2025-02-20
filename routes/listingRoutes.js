@@ -16,9 +16,9 @@ router.get("/view/:id", getListingById);
 
 router.get("/new", createListing);
 
-router.post("/", postListing);
-
 router.get("/:id/edit", editListing);
+
+router.post("/", postListing);
 
 router.put("/:id", updateListing);
 

@@ -19,7 +19,6 @@ const createListing = (req, res) => {
 };
 
 const postListing = wrapAsync(async (req, res, next) => {
-  console.log(req.body);
   const { title, description, price, location, country } = req.body;
 
   const newListing = await Listing.create({

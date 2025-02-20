@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 
 // Import routes
 const listingRoutes = require("./routes/listingRoutes");
+const ExpressError = require("./utils/ExpressError");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -19,19 +20,23 @@ app.use(express.json());
 
 app.engine("ejs", ejsMate);
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  const { status = 500, message = "Something went wrong" } = err;
-  res.status(status).send(message);
-});
-
 // Define routes
 app.get("/", (req, res) => {
   res.send("Home Page");
 });
 
-// listing routes
+// Listing routes
 app.use("/listings", listingRoutes);
+
+// Page not found error handler
+app.all("*", (req, res, next) => {
+  next(new ExpressError(404, "Page Not Found"));
+});
+
+app.use((err, req, res, next) => {
+  const { status = 500, message = "Something went wrong" } = err;
+  res.status(status).render("error", { status, message });
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
