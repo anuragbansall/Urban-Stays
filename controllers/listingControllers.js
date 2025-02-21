@@ -1,5 +1,26 @@
 const wrapAsync = require("../utils/wrapAsync");
 const Listing = require("../models/listing");
+const Joi = require("joi");
+const ExpressError = require("../utils/ExpressError");
+
+const joiSchema = Joi.object({
+  title: Joi.string().required(),
+  description: Joi.string().required(),
+  image: Joi.string().allow("", null),
+  price: Joi.number().min(1).required(),
+  location: Joi.string().required(),
+  country: Joi.string().required(),
+});
+
+const validateListing = (data) => {
+  const { error } = joiSchema.validate(data);
+  if (error) {
+    throw new ExpressError(
+      400,
+      error.details.map((err) => err.message).join(", ")
+    );
+  }
+};
 
 const getListing = wrapAsync(async (req, res, next) => {
   const listings = await Listing.find();
@@ -10,7 +31,9 @@ const getListingById = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
 
   const listing = await Listing.findById(id);
-  if (!listing) return res.status(404).send("Listing not found");
+  if (!listing) {
+    throw new ExpressError(404, "Listing not found");
+  }
   res.render("listings/show", { listing });
 });
 
@@ -21,6 +44,8 @@ const createListing = (req, res) => {
 const postListing = wrapAsync(async (req, res, next) => {
   const { title, description, price, location, country } = req.body;
 
+  validateListing(req.body);
+
   const newListing = await Listing.create({
     title,
     description,
@@ -28,13 +53,15 @@ const postListing = wrapAsync(async (req, res, next) => {
     location,
     country,
   });
-  res.redirect(`/listings/view/${newListing._id}`); // Use _id instead of id
+  res.redirect(`/listings/view/${newListing._id}`);
 });
 
 const editListing = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
-  if (!listing) return res.status(404).send("Listing not found");
+  if (!listing) {
+    throw new ExpressError(404, "Listing not found");
+  }
   res.render("listings/edit", { listing });
 });
 
@@ -42,25 +69,28 @@ const updateListing = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
   const { title, description, price, location, country, image } = req.body;
 
-  const updatedListing = await Listing.findByIdAndUpdate(
-    id,
-    {
-      title,
-      description,
-      price,
-      location,
-      country,
-      image,
-    },
-    { new: true }
-  );
+  validateListing(req.body);
+
+  const updatedListing = await Listing.findByIdAndUpdate(id, req.body, {
+    new: true,
+  });
+
+  if (!updatedListing) {
+    throw new ExpressError(404, "Listing not found");
+  }
+
   res.redirect(`/listings/view/${updatedListing._id}`);
 });
 
 const deleteListing = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
 
-  await Listing.findByIdAndDelete(id);
+  const deletedListing = await Listing.findByIdAndDelete(id);
+
+  if (!deletedListing) {
+    throw new ExpressError(404, "Listing not found");
+  }
+
   res.redirect("/listings");
 });
 

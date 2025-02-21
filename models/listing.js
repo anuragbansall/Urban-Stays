@@ -8,10 +8,12 @@ const listingSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    required: true,
   },
   image: {
     type: String,
-    default: "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg",
+    default:
+      "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg",
     set: (value) =>
       !value
         ? "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg"
@@ -34,6 +36,7 @@ const listingSchema = new mongoose.Schema({
   },
   country: {
     type: String,
+    required: true,
   },
 });
 
