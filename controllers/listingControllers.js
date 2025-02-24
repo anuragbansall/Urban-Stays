@@ -34,6 +34,9 @@ const getListingById = wrapAsync(async (req, res, next) => {
   if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
+
+  await listing.populate("reviews");
+
   res.render("listings/show", { listing });
 });
 

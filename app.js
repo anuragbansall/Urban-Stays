@@ -8,6 +8,7 @@ const ejsMate = require("ejs-mate");
 
 // Import routes
 const listingRoutes = require("./routes/listingRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 const ExpressError = require("./utils/ExpressError");
 
 app.set("view engine", "ejs");
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
 
 // Listing routes
 app.use("/listings", listingRoutes);
+app.use("/reviews", reviewRoutes);
 
 // Page not found error handler
 app.all("*", (req, res, next) => {

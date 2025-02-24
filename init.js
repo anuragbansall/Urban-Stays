@@ -1,19 +1,22 @@
 const mongoose = require("mongoose");
-const connectDB = require("./config/db");
+const connectDB = require("./config/connectDB");
 const { data } = require("./data/initialData");
 const Listing = require("./models/listing");
 
-connectDB();
-
-// Create some test listings
-async function createTestListings() {
+async function init() {
   try {
+    await connectDB();
+
     await Listing.deleteMany({});
     await Listing.create(data);
+
     console.log("Test listings created successfully");
   } catch (err) {
-    console.error(err);
+    console.error("Error:", err);
+  } finally {
+    mongoose.connection.close();
+    console.log("Database connection closed.");
   }
 }
 
-createTestListings();
+init();

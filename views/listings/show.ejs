@@ -23,6 +23,48 @@
       >
       <a href="/listings/new" class="secondary-btn">Add New Listing</a>
     </div>
+
+    <div id="add-review-form">
+      <h3>Add a Review</h3>
+      <form action="/reviews/<%= listing._id %>" method="POST">
+        <div class="form-group">
+          <label for="comment">Comment:</label>
+          <textarea
+            name="comment"
+            id="comment"
+            cols="30"
+            rows="10"
+            required
+            placeholder="Enter your review here..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="rating">Rating:</label>
+          <input
+            type="number"
+            name="rating"
+            id="rating"
+            min="1"
+            max="5"
+            required
+            placeholder="Enter a rating between 1 and 5"
+          />
+        </div>
+        <button type="submit" class="primary-btn">Add Review</button>
+      </form>
+    </div>
+
+    <div id="view-reviews">
+      <h3>Reviews</h3>
+      <ul>
+        <% listing.reviews.forEach(review => { %>
+        <li>
+          <h4><%= review.comment %></h4>
+          <p>Rating: <%= review.rating %></p>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
   </div>
   <script src="/public/javascripts/listing.js"></script>
 </body>

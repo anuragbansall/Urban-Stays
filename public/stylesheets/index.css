@@ -344,3 +344,59 @@ header#navbar nav ul li a:hover {
   font-size: 1.5rem;
   color: #333;
 }
+
+#add-review-form,
+#view-reviews {
+  margin-top: 5rem;
+}
+
+#add-review-form h3,
+#view-reviews h3 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+#add-review-form label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+#add-review-form input,
+#add-review-form textarea {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: none;
+}
+
+#view-reviews ul {
+  list-style: none;
+}
+
+#view-reviews li {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#view-reviews li h4 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+#view-reviews li p {
+  font-size: 1.1rem;
+  color: #666;
+}
