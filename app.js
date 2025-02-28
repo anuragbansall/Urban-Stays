@@ -23,7 +23,7 @@ app.engine("ejs", ejsMate);
 
 // Define routes
 app.get("/", (req, res) => {
-  res.send("Home Page");
+  res.redirect("/listings");
 });
 
 // Listing routes

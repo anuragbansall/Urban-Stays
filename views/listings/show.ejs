@@ -61,6 +61,12 @@
         <li>
           <h4><%= review.comment %></h4>
           <p>Rating: <%= review.rating %></p>
+          <form
+            action="/reviews/<%= review._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button type="submit">Delete</button>
+          </form>
         </li>
         <% }) %>
       </ul>
