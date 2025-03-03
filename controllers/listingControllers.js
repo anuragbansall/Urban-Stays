@@ -32,7 +32,8 @@ const getListingById = wrapAsync(async (req, res, next) => {
 
   const listing = await Listing.findById(id);
   if (!listing) {
-    throw new ExpressError(404, "Listing not found");
+    req.flash("error", "Listing not found");
+    return res.redirect("/listings");
   }
 
   await listing.populate("reviews");
@@ -71,7 +72,8 @@ const editListing = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
   const listing = await Listing.findById(id);
   if (!listing) {
-    throw new ExpressError(404, "Listing not found");
+    req.flash("error", "Listing not found");
+    return res.redirect("/listings");
   }
 
   res.render("listings/edit", { listing });
