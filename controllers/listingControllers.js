@@ -73,6 +73,7 @@ const editListing = wrapAsync(async (req, res, next) => {
   if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
+
   res.render("listings/edit", { listing });
 });
 
@@ -90,6 +91,8 @@ const updateListing = wrapAsync(async (req, res, next) => {
     throw new ExpressError(404, "Listing not found");
   }
 
+  req.flash("success", "Listing updated successfully");
+
   res.redirect(`/listings/view/${updatedListing._id}`);
 });
 
@@ -101,6 +104,8 @@ const deleteListing = wrapAsync(async (req, res, next) => {
   if (!deletedListing) {
     throw new ExpressError(404, "Listing not found");
   }
+
+  req.flash("success", "Listing deleted successfully");
 
   res.redirect("/listings");
 });
