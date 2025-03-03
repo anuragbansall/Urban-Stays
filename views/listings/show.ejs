@@ -1,5 +1,7 @@
 <% layout("/layouts/boilerplate") %>
 <body>
+  
+
   <div class="show-listing-card">
     <div class="show-listing-image">
       <img src="<%= listing.image %>" alt="image of <%= listing.title %>" />
@@ -65,7 +67,9 @@
             action="/reviews/<%= review._id %>?_method=DELETE"
             method="POST"
           >
-            <button type="submit" class="primary-btn" style="margin-top: 1rem;">Delete</button>
+            <button type="submit" class="primary-btn" style="margin-top: 1rem">
+              Delete
+            </button>
           </form>
         </li>
         <% }) %>

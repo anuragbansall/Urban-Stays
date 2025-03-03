@@ -56,6 +56,14 @@ const postListing = wrapAsync(async (req, res, next) => {
     location,
     country,
   });
+
+  if (!newListing) {
+    req.flash("error", "Failed to create listing");
+    throw new ExpressError(500, "Failed to create listing");
+  }
+
+  req.flash("success", "Listing created successfully");
+
   res.redirect(`/listings/view/${newListing._id}`);
 });
 

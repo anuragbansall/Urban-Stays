@@ -35,6 +35,8 @@ const addReview = wrapAsync(async (req, res) => {
   listing.reviews.push(review);
   await listing.save();
 
+  req.flash("success", "Review added successfully");
+
   res.redirect(`/listings/view/${listingId}`);
 });
 
@@ -50,6 +52,8 @@ const deleteReview = wrapAsync(async (req, res) => {
   await Review.findByIdAndDelete(reviewId);
   listing.reviews.pull(reviewId);
   await listing.save();
+
+  req.flash("success", "Review deleted successfully");
 
   res.redirect(`/listings/view/${listing._id}`);
 });
