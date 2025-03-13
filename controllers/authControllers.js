@@ -1,3 +1,4 @@
+const passport = require("passport");
 const User = require("../models/User");
 const wrapAsync = require("../utils/wrapAsync");
 
@@ -21,6 +22,14 @@ const signup = wrapAsync(async (req, res) => {
   });
 });
 
+const login = passport.authenticate("local", {
+  failureFlash: true,
+  failureRedirect: "/login",
+  successFlash: "Welcome back!",
+  successRedirect: "/listings",
+});
+
 module.exports = {
   signup,
+  login,
 };
