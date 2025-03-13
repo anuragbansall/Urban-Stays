@@ -7,6 +7,9 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/User");
 
 // Import routes
 const listingRoutes = require("./routes/listingRoutes");
@@ -35,6 +38,13 @@ app.use(
 );
 
 app.use(flash());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(User.createStrategy()); // Use the User model for authentication
+passport.serializeUser(User.serializeUser()); // Serialize user data to store in session
+passport.deserializeUser(User.deserializeUser()); // Deserialize user data from session to use in routes
 
 app.engine("ejs", ejsMate);
 
