@@ -10,11 +10,13 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/User");
+const authRoutes = require("./routes/authRoutes");
 
 // Import routes
 const listingRoutes = require("./routes/listingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const ExpressError = require("./utils/ExpressError");
+const wrapAsync = require("./utils/wrapAsync");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -63,6 +65,9 @@ app.get("/", (req, res) => {
 // Listing routes
 app.use("/listings", listingRoutes);
 app.use("/reviews", reviewRoutes);
+
+// Auth routes
+app.use("/", authRoutes);
 
 // Page not found error handler
 app.all("*", (req, res, next) => {
