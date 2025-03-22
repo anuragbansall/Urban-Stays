@@ -1,4 +1,5 @@
 const express = require("express");
+const protect = require("../middlewares/authMiddleware");
 const {
   getListing,
   getListingById,
@@ -14,14 +15,14 @@ router.get("/", getListing);
 
 router.get("/view/:id", getListingById);
 
-router.get("/new", createListing);
+router.get("/new", protect, createListing);
 
-router.get("/:id/edit", editListing);
+router.get("/:id/edit", protect, editListing);
 
-router.post("/", postListing);
+router.post("/", protect, postListing);
 
-router.put("/:id", updateListing);
+router.put("/:id", protect, updateListing);
 
-router.delete("/:id", deleteListing);
+router.delete("/:id", protect, deleteListing);
 
 module.exports = router;

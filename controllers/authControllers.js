@@ -29,7 +29,18 @@ const login = passport.authenticate("local", {
   successRedirect: "/listings",
 });
 
+const logout = (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.flash("success", "Goodbye!");
+    res.redirect("/listings");
+  });
+};
+
 module.exports = {
   signup,
   login,
+  logout,
 };

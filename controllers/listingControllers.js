@@ -31,10 +31,6 @@ const getListingById = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
 
   const listing = await Listing.findById(id);
-  if (!listing) {
-    req.flash("error", "Listing not found");
-    return res.redirect("/listings");
-  }
 
   await listing.populate("reviews");
 
@@ -42,19 +38,10 @@ const getListingById = wrapAsync(async (req, res, next) => {
 });
 
 const createListing = (req, res) => {
-  if (req.isAuthenticated()) {
-    return res.render("listings/new");
-  }
-  req.flash("error", "You need to be logged in to create a listing");
-  res.redirect("/login");
+  return res.render("listings/new");
 };
 
 const postListing = wrapAsync(async (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.flash("error", "You need to be logged in to create a listing");
-    return res.redirect("/login");
-  }
-
   const { title, description, price, location, country } = req.body;
 
   validateListing(req.body);
@@ -78,11 +65,6 @@ const postListing = wrapAsync(async (req, res, next) => {
 });
 
 const editListing = wrapAsync(async (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.flash("error", "You need to be logged in to edit a listing");
-    return res.redirect("/login");
-  }
-
   const { id } = req.params;
   const listing = await Listing.findById(id);
   if (!listing) {
@@ -94,11 +76,6 @@ const editListing = wrapAsync(async (req, res, next) => {
 });
 
 const updateListing = wrapAsync(async (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.flash("error", "You need to be logged in to edit a listing");
-    return res.redirect("/login");
-  }
-
   const { id } = req.params;
   const { title, description, price, location, country, image } = req.body;
 
@@ -118,11 +95,6 @@ const updateListing = wrapAsync(async (req, res, next) => {
 });
 
 const deleteListing = wrapAsync(async (req, res, next) => {
-  if (!req.isAuthenticated()) {
-    req.flash("error", "You need to be logged in to delete a listing");
-    return res.redirect("/login");
-  }
-
   const { id } = req.params;
 
   const deletedListing = await Listing.findByIdAndDelete(id);
