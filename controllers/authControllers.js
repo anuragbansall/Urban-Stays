@@ -22,12 +22,23 @@ const signup = wrapAsync(async (req, res) => {
   });
 });
 
-const login = passport.authenticate("local", {
-  failureFlash: true,
-  failureRedirect: "/login",
-  successFlash: "Welcome back!",
-  successRedirect: "/listings",
-});
+const login = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+    if (!user) {
+      req.flash("error", info?.message || "Invalid credentials");
+      return res.redirect("/login");
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+
+      const redirectUrl = res.locals.redirectUrl || "/listings";
+
+      res.redirect(redirectUrl);
+    });
+  })(req, res, next);
+};
 
 const logout = (req, res, next) => {
   req.logout((err) => {

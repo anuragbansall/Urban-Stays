@@ -1,5 +1,6 @@
 const express = require("express");
 const { signup, login, logout } = require("../controllers/authControllers");
+const { saveRedirectUrl } = require("../middlewares/authMiddleware");
 const router = express.Router();
 
 router.get("/signup", (req, res) => {
@@ -12,7 +13,7 @@ router.get("/login", (req, res) => {
 
 router.post("/signup", signup);
 
-router.post("/login", login);
+router.post("/login", saveRedirectUrl, login);
 
 router.get("/logout", logout);
 
