@@ -70,9 +70,17 @@ header#navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
   padding: 1.5rem 2rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
+}
+
+header#navbar nav {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 header#navbar #logo {
