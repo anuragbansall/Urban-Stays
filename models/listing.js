@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const Review = require("./review");
 
 const listingSchema = new mongoose.Schema({
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -21,11 +26,12 @@ const listingSchema = new mongoose.Schema({
         : value,
     validate: {
       validator: function (v) {
-        return /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)$/.test(v);
+        return /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)(\?.*)?$/.test(v);
       },
       message: (props) => `${props.value} is not a valid image URL!`,
     },
   },
+
   price: {
     type: Number,
     required: true,

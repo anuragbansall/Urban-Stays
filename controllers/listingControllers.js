@@ -6,7 +6,7 @@ const ExpressError = require("../utils/ExpressError");
 const joiSchema = Joi.object({
   title: Joi.string().required(),
   description: Joi.string().required(),
-  image: Joi.string().allow("", null),
+  image: Joi.string().uri().allow("", null),
   price: Joi.number().min(1).required(),
   location: Joi.string().required(),
   country: Joi.string().required(),
@@ -42,7 +42,8 @@ const createListing = (req, res) => {
 };
 
 const postListing = wrapAsync(async (req, res, next) => {
-  const { title, description, price, location, country } = req.body;
+  const { title, description, price, location, country, image } = req.body;
+  const owner = req.user._id;
 
   validateListing(req.body);
 
@@ -52,6 +53,8 @@ const postListing = wrapAsync(async (req, res, next) => {
     price,
     location,
     country,
+    owner,
+    image,
   });
 
   if (!newListing) {
