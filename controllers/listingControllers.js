@@ -31,8 +31,15 @@ const getListingById = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
 
   const listing = await Listing.findById(id)
-    .populate("reviews")
+    .populate({
+      path: "reviews",
+      populate: {
+        path: "owner",
+      },
+    })
     .populate("owner");
+
+  console.log(listing);
 
   if (!listing) {
     throw new ExpressError(404, "Listing not found");

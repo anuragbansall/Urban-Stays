@@ -31,7 +31,7 @@
     <% } %>
 
     <!-- Review Form (Only for Logged-in Users) -->
-    <% if (user) { %>
+    <% if (user && String(user._id) !== String(listing.owner._id)) { %>
     <div id="add-review-form">
       <h3>Add a Review</h3>
       <form action="/reviews/<%= listing._id %>" method="POST">
@@ -61,8 +61,6 @@
         <button type="submit" class="primary-btn">Add Review</button>
       </form>
     </div>
-    <% } else { %>
-    <p><a href="/login">Log in</a> to add a review.</p>
     <% } %>
 
     <!-- Reviews Section -->
@@ -74,11 +72,13 @@
       <ul>
         <% listing.reviews.forEach(review => { %>
         <li>
-          <h4><%= review.comment %></h4>
+          <h4><%= review?.comment %></h4>
           <p>Rating: <%= review.rating %>/5</p>
-          <p><strong>By:</strong> <%= review.author.username %></p>
+          <p>
+            <strong>By:</strong> <%= review?.owner?.username || "Anonymous" %>
+          </p>
 
-          <% if (user && String(user._id) === String(review.author._id)) { %>
+          <% if (user && String(user._id) === String(review?.owner._id)) { %>
           <form
             action="/reviews/<%= review._id %>?_method=DELETE"
             method="POST"
