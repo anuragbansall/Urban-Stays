@@ -30,9 +30,15 @@ const getListing = wrapAsync(async (req, res, next) => {
 const getListingById = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
 
-  const listing = await Listing.findById(id);
+  const listing = await Listing.findById(id)
+    .populate("reviews")
+    .populate("owner");
 
-  await listing.populate("reviews");
+  if (!listing) {
+    throw new ExpressError(404, "Listing not found");
+  }
+
+  console.log(listing);
 
   res.render("listings/show", { listing });
 });

@@ -1,7 +1,5 @@
 <% layout("/layouts/boilerplate") %>
 <body>
-  
-
   <div class="show-listing-card">
     <div class="show-listing-image">
       <img src="<%= listing.image %>" alt="image of <%= listing.title %>" />
@@ -15,6 +13,7 @@
       <p class="show-listing-location">
         <%= listing.location %>, <%= listing.country %>
       </p>
+      <p><strong>Posted by:</strong> <%= listing.owner.username %></p>
     </div>
     <div class="show-listing-actions">
       <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
