@@ -95,9 +95,7 @@ const updateListing = wrapAsync(async (req, res, next) => {
 
   validateListing(req.body);
 
-  const updatedListing = await Listing.findByIdAndUpdate(id, req.body, {
-    new: true,
-  });
+  const updatedListing = await Listing.findById(id);
 
   if (!updatedListing) {
     throw new ExpressError(404, "Listing not found");
@@ -107,6 +105,15 @@ const updateListing = wrapAsync(async (req, res, next) => {
     req.flash("error", "You do not have permission to edit this listing");
     return res.redirect(`/listings/view/${updatedListing._id}`);
   }
+
+  await Listing.findByIdAndUpdate(id, {
+    title,
+    description,
+    price,
+    location,
+    country,
+    image,
+  });
 
   req.flash("success", "Listing updated successfully");
 
