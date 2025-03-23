@@ -1,20 +1,24 @@
 <% layout("/layouts/boilerplate") %>
 <body>
   <div class="show-listing-card">
+    <!-- Listing Image -->
     <div class="show-listing-image">
       <img src="<%= listing.image %>" alt="image of <%= listing.title %>" />
     </div>
+
+    <!-- Listing Information -->
     <div class="show-listing-info">
       <h2 class="show-listing-title"><strong><%= listing.title %></strong></h2>
-      <p class="show-listing-price">
-        Price: &#8377; <%= listing.price.toLocaleString("en-IN") %>
-      </p>
+      <p class="show-listing-price">Price: &#8377; <%= listing.price %></p>
       <p class="show-listing-description"><%= listing.description %></p>
       <p class="show-listing-location">
         <%= listing.location %>, <%= listing.country %>
       </p>
       <p><strong>Posted by:</strong> <%= listing.owner.username %></p>
     </div>
+
+    <!-- Owner Controls (Edit/Delete Listing) -->
+    <% if (user && String(user._id) === String(listing.owner._id)) { %>
     <div class="show-listing-actions">
       <form action="/listings/<%= listing._id %>?_method=DELETE" method="POST">
         <button type="submit" class="primary-btn">Delete Listing</button>
@@ -24,7 +28,10 @@
       >
       <a href="/listings/new" class="secondary-btn">Add New Listing</a>
     </div>
+    <% } %>
 
+    <!-- Review Form (Only for Logged-in Users) -->
+    <% if (user) { %>
     <div id="add-review-form">
       <h3>Add a Review</h3>
       <form action="/reviews/<%= listing._id %>" method="POST">
@@ -34,7 +41,7 @@
             name="comment"
             id="comment"
             cols="30"
-            rows="10"
+            rows="5"
             required
             placeholder="Enter your review here..."
           ></textarea>
@@ -54,14 +61,24 @@
         <button type="submit" class="primary-btn">Add Review</button>
       </form>
     </div>
+    <% } else { %>
+    <p><a href="/login">Log in</a> to add a review.</p>
+    <% } %>
 
+    <!-- Reviews Section -->
     <div id="view-reviews">
       <h3>Reviews</h3>
+      <% if (listing.reviews.length === 0) { %>
+      <p>No reviews yet.</p>
+      <% } else { %>
       <ul>
         <% listing.reviews.forEach(review => { %>
         <li>
           <h4><%= review.comment %></h4>
-          <p>Rating: <%= review.rating %></p>
+          <p>Rating: <%= review.rating %>/5</p>
+          <p><strong>By:</strong> <%= review.author.username %></p>
+
+          <% if (user && String(user._id) === String(review.author._id)) { %>
           <form
             action="/reviews/<%= review._id %>?_method=DELETE"
             method="POST"
@@ -70,10 +87,13 @@
               Delete
             </button>
           </form>
+          <% } %>
         </li>
         <% }) %>
       </ul>
+      <% } %>
     </div>
   </div>
+
   <script src="/public/javascripts/listing.js"></script>
 </body>
