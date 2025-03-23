@@ -81,6 +81,11 @@ const editListing = wrapAsync(async (req, res, next) => {
     return res.redirect("/listings");
   }
 
+  if (!listing.owner.equals(req.user._id)) {
+    req.flash("error", "You do not have permission to edit this listing");
+    return res.redirect(`/listings/view/${listing._id}`);
+  }
+
   res.render("listings/edit", { listing });
 });
 
@@ -98,6 +103,11 @@ const updateListing = wrapAsync(async (req, res, next) => {
     throw new ExpressError(404, "Listing not found");
   }
 
+  if (!updatedListing.owner.equals(req.user._id)) {
+    req.flash("error", "You do not have permission to edit this listing");
+    return res.redirect(`/listings/view/${updatedListing._id}`);
+  }
+
   req.flash("success", "Listing updated successfully");
 
   res.redirect(`/listings/view/${updatedListing._id}`);
@@ -106,11 +116,18 @@ const updateListing = wrapAsync(async (req, res, next) => {
 const deleteListing = wrapAsync(async (req, res, next) => {
   const { id } = req.params;
 
-  const deletedListing = await Listing.findByIdAndDelete(id);
+  const deletedListing = await Listing.findById(id);
 
   if (!deletedListing) {
     throw new ExpressError(404, "Listing not found");
   }
+
+  if (!deletedListing.owner.equals(req.user._id)) {
+    req.flash("error", "You do not have permission to delete this listing");
+    return res.redirect(`/listings/view/${deletedListing._id}`);
+  }
+
+  await deletedListing.deleteOne();
 
   req.flash("success", "Listing deleted successfully");
 
