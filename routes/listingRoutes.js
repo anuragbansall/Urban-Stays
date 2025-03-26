@@ -11,18 +11,14 @@ const {
 } = require("../controllers/listingControllers");
 const router = express.Router();
 
-router.get("/", getListing);
+router.route("/").get(getListing).post(protect, postListing);
 
-router.get("/view/:id", getListingById);
+router.route("/view/:id").get(getListingById);
 
-router.get("/new", protect, createListing);
+router.route("/new").get(protect, createListing);
 
-router.get("/:id/edit", protect, editListing);
+router.route("/:id/edit").get(protect, editListing);
 
-router.post("/", protect, postListing);
-
-router.put("/:id", protect, updateListing);
-
-router.delete("/:id", protect, deleteListing);
+router.route("/:id").put(protect, updateListing).delete(protect, deleteListing);
 
 module.exports = router;

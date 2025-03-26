@@ -2,8 +2,6 @@ const express = require("express");
 const { addReview, deleteReview } = require("../controllers/reviewControllers");
 const router = express.Router();
 
-router.post("/:id", addReview);
-
-router.delete("/:id", deleteReview);
+router.route("/:id").post(addReview).delete(deleteReview);
 
 module.exports = router;
