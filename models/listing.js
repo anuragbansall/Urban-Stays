@@ -17,18 +17,13 @@ const listingSchema = new mongoose.Schema({
     required: true,
   },
   image: {
-    type: String,
-    default:
-      "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg",
-    set: (value) =>
-      !value
-        ? "https://static.vecteezy.com/system/resources/previews/046/952/344/large_2x/empty-state-data-not-found-illustration-free-vector.jpg"
-        : value,
-    validate: {
-      validator: function (v) {
-        return /^https?:\/\/.*\.(jpg|jpeg|png|gif|webp)(\?.*)?$/.test(v);
-      },
-      message: (props) => `${props.value} is not a valid image URL!`,
+    url: {
+      type: String,
+      required: true,
+    },
+    filename: {
+      type: String,
+      required: true,
     },
   },
 

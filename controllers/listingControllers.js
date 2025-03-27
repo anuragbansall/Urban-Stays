@@ -54,8 +54,6 @@ const postListing = wrapAsync(async (req, res, next) => {
   const { title, description, price, location, country, image } = req.body;
   const owner = req.user._id;
 
-  console.log(req.file);
-
   validateListing(req.body);
 
   const newListing = await Listing.create({
@@ -65,7 +63,10 @@ const postListing = wrapAsync(async (req, res, next) => {
     location,
     country,
     owner,
-    image,
+    image: {
+      url: req.file.path,
+      filename: req.file.filename,
+    },
   });
 
   if (!newListing) {
