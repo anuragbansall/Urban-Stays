@@ -1,6 +1,11 @@
 <% layout("/layouts/boilerplate") %>
 <body class="form-body">
-  <form action="/listings" method="POST" class="form">
+  <form
+    action="/listings"
+    method="POST"
+    class="form"
+    enctype="multipart/form-data"
+  >
     <h2 class="form-title">Add New Listing</h2>
     <label for="title">Title</label>
     <input
@@ -41,12 +46,7 @@
     />
     <br />
     <label for="image">Image</label>
-    <input
-      type="text"
-      name="image"
-      id="image"
-      placeholder="Image URL here..."
-    />
+    <input type="file" name="image" id="image" />
     <br />
     <button type="submit" class="submit-btn">Add Listing</button>
   </form>

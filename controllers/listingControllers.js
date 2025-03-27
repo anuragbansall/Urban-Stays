@@ -39,13 +39,9 @@ const getListingById = wrapAsync(async (req, res, next) => {
     })
     .populate("owner");
 
-  console.log(listing);
-
   if (!listing) {
     throw new ExpressError(404, "Listing not found");
   }
-
-  console.log(listing);
 
   res.render("listings/show", { listing });
 });
@@ -57,6 +53,8 @@ const createListing = (req, res) => {
 const postListing = wrapAsync(async (req, res, next) => {
   const { title, description, price, location, country, image } = req.body;
   const owner = req.user._id;
+
+  console.log(req.file);
 
   validateListing(req.body);
 
