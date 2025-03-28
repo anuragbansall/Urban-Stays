@@ -76,6 +76,7 @@ app.all("*", (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
+  console.error(err.stack); // Log the error stack for debugging
   const { status = 500, message = "Something went wrong" } = err;
   res.status(status).render("error", { status, message });
 });

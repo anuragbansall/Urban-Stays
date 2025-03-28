@@ -211,6 +211,11 @@ header#navbar nav ul li a:hover {
   font-size: 1.2rem;
   font-weight: 500;
   margin: 0.5rem 0;
+  line-clamp: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 95%;
 }
 
 .listing-price {
@@ -226,7 +231,6 @@ header#navbar nav ul li a:hover {
 .form {
   width: fit-content;
   margin: 5rem auto;
-  /* background-color: #f7f7f7; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   border-radius: 10px;
@@ -253,7 +257,7 @@ header#navbar nav ul li a:hover {
   padding: 0.5rem 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
-  width: 25rem;
+  width: 100%;
   font-size: 1rem;
 }
 
@@ -277,6 +281,12 @@ header#navbar nav ul li a:hover {
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 1.1rem;
+}
+
+.small-image img {
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
 .show-listing-card {

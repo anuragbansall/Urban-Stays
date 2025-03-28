@@ -26,6 +26,9 @@ router.route("/new").get(protect, createListing);
 
 router.route("/:id/edit").get(protect, editListing);
 
-router.route("/:id").put(protect, updateListing).delete(protect, deleteListing);
+router
+  .route("/:id")
+  .put(protect, upload.single("image"), updateListing)
+  .delete(protect, deleteListing);
 
 module.exports = router;

@@ -5,6 +5,7 @@
     method="POST"
     action="/listings/<%= listing.id %>?_method=PUT"
     class="form"
+    enctype="multipart/form-data"
   >
     <h2 class="form-title">Edit Listing</h2>
     <label for="title">Title</label>
@@ -49,7 +50,14 @@
     />
     <br />
     <label for="image">Image</label>
-    <input type="text" name="image" id="image" value="<%= listing.image %>" />
+    <a class="small-image" href="<%= listing.image.url %>" target="_blank">
+      <img
+        src="<%= listing.image.url %>"
+        alt="Listing Image"
+        class="listing-image"
+      />
+    </a>
+    <input type="file" name="image" id="image" />
     <br />
     <button type="submit" class="submit-btn">Update Listing</button>
   </form>

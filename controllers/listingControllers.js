@@ -118,7 +118,10 @@ const updateListing = wrapAsync(async (req, res, next) => {
     price,
     location,
     country,
-    image,
+    image: {
+      url: req.file ? req.file.path : updatedListing.image.url,
+      filename: req.file ? req.file.filename : updatedListing.image.filename,
+    },
   });
 
   req.flash("success", "Listing updated successfully");
