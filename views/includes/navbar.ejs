@@ -6,12 +6,12 @@
     <a href="/" id="logo-text">Urban Stays</a>
   </span>
   <nav>
-    <ul>
+    <ul id="main-nav">
       <li><a href="/">Home</a></li>
       <li><a href="/listings">Listings</a></li>
       <li><a href="/listings/new">Add Listings</a></li>
     </ul>
-    <ul>
+    <ul id="user-nav">
       <% if(user) { %>
       <li><a href="/logout">Logout</a></li>
       <% } else{ %>
