@@ -11,6 +11,12 @@
       <li><a href="/listings">Listings</a></li>
       <li><a href="/listings/new">Add Listings</a></li>
     </ul>
+
+    <form id="search-form">
+      <input type="text" id="search" placeholder="Search..." />
+      <button type="submit" id="search-button">Search</button>
+    </form>
+
     <ul id="user-nav">
       <% if(user) { %>
       <li><a href="/logout">Logout</a></li>
@@ -21,3 +27,16 @@
     </ul>
   </nav>
 </header>
+
+<script>
+  const searchForm = document.getElementById("search-form");
+  const searchInput = document.getElementById("search");
+
+  searchForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const query = searchInput.value.trim();
+    if (query) {
+      window.location.href = `/listings?search=${encodeURIComponent(query)}`;
+    }
+  });
+</script>

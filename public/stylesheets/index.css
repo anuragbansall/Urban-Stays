@@ -131,6 +131,35 @@ header#navbar nav ul li a:hover {
   background-color: var(--secondary-color);
 }
 
+header#navbar #search-form {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+header#navbar #search-form input[type="text"] {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+header#navbar #search-form input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+header#navbar #search-form button {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
 #footer {
   margin-top: auto;
   background-color: var(--primary-color);
@@ -472,5 +501,9 @@ header#navbar nav ul li a:hover {
 
   .footer-content-brand {
     flex-direction: row;
+  }
+
+  header#navbar #search-form {
+    display: flex;
   }
 }
