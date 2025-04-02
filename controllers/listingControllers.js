@@ -23,7 +23,22 @@ const validateListing = (data) => {
 };
 
 const getListing = wrapAsync(async (req, res, next) => {
-  const listings = await Listing.find();
+  const { search } = req.query;
+
+  const listings = await Listing.find({}).populate("owner");
+
+  if (search) {
+    const regex = new RegExp(search, "i");
+    const filteredListings = listings.filter(
+      (listing) => listing.title.match(regex) || listing.location.match(regex)
+    );
+    if (filteredListings.length === 0) {
+      req.flash("error", "No listings found");
+      return res.redirect("/listings");
+    }
+    return res.render("listings", { listings: filteredListings });
+  }
+
   res.render("listings", { listings });
 });
 
