@@ -1,7 +1,7 @@
 const sampleListings = [
   {
     title: "Cozy Beachfront Cottage",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
     image: {
@@ -14,7 +14,7 @@ const sampleListings = [
   },
   {
     title: "Modern Loft in Downtown",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Stay in the heart of the city in this stylish loft apartment. Perfect for urban explorers!",
     image: {
@@ -27,7 +27,7 @@ const sampleListings = [
   },
   {
     title: "Mountain Retreat",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Unplug and unwind in this peaceful mountain cabin. Surrounded by nature, it's a perfect place to recharge.",
     image: {
@@ -40,7 +40,7 @@ const sampleListings = [
   },
   {
     title: "Historic Villa in Tuscany",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Experience the charm of Tuscany in this beautifully restored villa. Explore the rolling hills and vineyards.",
     image: {
@@ -53,7 +53,7 @@ const sampleListings = [
   },
   {
     title: "Secluded Treehouse Getaway",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
     image: {
@@ -66,7 +66,7 @@ const sampleListings = [
   },
   {
     title: "Beachfront Paradise",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Step out of your door onto the sandy beach. This beachfront condo offers the ultimate relaxation.",
     image: {
@@ -79,7 +79,7 @@ const sampleListings = [
   },
   {
     title: "Rustic Cabin by the Lake",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Spend your days fishing and kayaking on the serene lake. This cozy cabin is perfect for outdoor enthusiasts.",
     image: {
@@ -92,7 +92,7 @@ const sampleListings = [
   },
   {
     title: "Luxury Penthouse with City Views",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Indulge in luxury living with panoramic city views from this stunning penthouse apartment.",
     image: {
@@ -105,7 +105,7 @@ const sampleListings = [
   },
   {
     title: "Ski-In/Ski-Out Chalet",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Hit the slopes right from your doorstep in this ski-in/ski-out chalet in the Swiss Alps.",
     image: {
@@ -118,7 +118,7 @@ const sampleListings = [
   },
   {
     title: "Safari Lodge in the Serengeti",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Experience the thrill of the wild in a comfortable safari lodge. Witness the Great Migration up close.",
     image: {
@@ -131,7 +131,7 @@ const sampleListings = [
   },
   {
     title: "Historic Canal House",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Stay in a piece of history in this beautifully preserved canal house in Amsterdam's iconic district.",
     image: {
@@ -144,7 +144,7 @@ const sampleListings = [
   },
   {
     title: "Private Island Retreat",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Have an entire island to yourself for a truly exclusive and unforgettable vacation experience.",
     image: {
@@ -157,7 +157,7 @@ const sampleListings = [
   },
   {
     title: "Charming Cottage in the Cotswolds",
-    owner: "67e0659cc8437a37a3ca1628",
+    owner: "67ee7d5f753f2f2e0d6c30f6",
     description:
       "Escape to the picturesque Cotswolds in this quaint and charming cottage with a thatched roof.",
     image: {
