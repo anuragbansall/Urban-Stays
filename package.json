@@ -8,7 +8,9 @@
   "description": "A modern platform to discover and book unique urban accommodations with ease.",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
   },
   "repository": {
     "type": "git",
