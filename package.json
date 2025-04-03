@@ -1,4 +1,8 @@
 {
+  "engines": {
+    "node": "22.13.1",
+    "npm": "11.1.0"
+  },
   "name": "urban-stays",
   "version": "1.0.0",
   "description": "A modern platform to discover and book unique urban accommodations with ease.",
